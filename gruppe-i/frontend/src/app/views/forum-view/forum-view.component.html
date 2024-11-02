@@ -1,0 +1,64 @@
+<app-toolbar></app-toolbar>
+
+<body>
+<link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet">
+
+<div class="container">
+  <div class="row">
+    <!-- Main content -->
+
+    <h1 style="color: whitesmoke">Topics</h1>
+    <div class="col-lg-9 mb-3"  >
+      <!-- End of post 1 -->
+      <div style="background-color: floralwhite "  *ngFor="let topic of this.discussionTopics" class="card row-hover pos-relative py-3 px-3 mb-3 border-warning border-top-0 border-right-0 border-bottom-0 rounded-0" >
+        <div class="row align-items-center" (click)="goToDiscussion(topic.id)">
+          <div class="col-md-8 mb-3 mb-sm-0">
+            <h5>
+              <a class="text-primary">{{topic.title}}</a>
+            </h5>
+            <p class="text-sm"><span class="op-6"><span class="op-6" >{{topic.text}}</span></span></p>
+            <br>
+            <p class="text-sm"><span class="op-6"><span class="op-6" style="color: dimgray">by {{topic.creator.email}}</span></span></p>
+            <p class="text-sm"><span class="op-6"><span class="op-6" style="color: dimgray">at {{topic.datum}}</span></span></p>
+          </div>
+
+          <!--
+          <div class="col-md-4 op-7">
+            <div class="row text-center op-7">
+              <div class="col px-1"> <i class="ion-connection-bars icon-1x"></i> <span class="d-block text-sm">141 Votes</span> </div>
+              <div class="col px-1"> <i class="ion-ios-chatboxes-outline icon-1x"></i> <span class="d-block text-sm">122 Replys</span> </div>
+              <div class="col px-1"> <i class="ion-ios-eye-outline icon-1x"></i> <span class="d-block text-sm">290 Views</span> </div>
+            </div>
+          </div>
+          -->
+        </div>
+        <div *ngIf="!isUser" class="btn-grad" (click)="deleteDiscussion(topic.id)">delete</div>
+      </div>
+      <!-- /End of post 1 -->
+    </div>
+    <!-- Sidebar content -->
+    <div class="col-lg-3 mb-4 mb-lg-0 px-lg-0 mt-lg-0" >
+      <div style="visibility: hidden; display: none; width: 285px; height: 801px; margin: 0px; float: none; position: static; inset: 85px auto auto;"></div><div data-settings="{&quot;parent&quot;:&quot;#content&quot;,&quot;mind&quot;:&quot;#header&quot;,&quot;top&quot;:10,&quot;breakpoint&quot;:992}" data-toggle="sticky" class="sticky" style="top: 85px;"><div class="sticky-inner">
+
+
+        <div  class="bordermaker" style="border-color: whitesmoke; border-width: 45px">
+        <h2> create new Topic </h2>
+          <label for="Topic">Titel</label>
+          <input style="background-color: floralwhite" type="text" id="Topic" [(ngModel)]="newTopic">
+          <label for="category">Category</label>
+          <input style="background-color: floralwhite" type="text" id="category" [(ngModel)]="newCategory">
+          <label for="Comment">Comment</label>
+          <textarea type="text" id="Comment" class="comment" [(ngModel)]="newText"></textarea>
+        </div>
+        <div class="btn-grad" (click)="createNewTopic()">create</div>
+
+
+      <div class="bg-white mb-3" style="align-content: center; align-items: center"></div>
+
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+</body>
+

@@ -1,0 +1,32 @@
+<app-toolbar></app-toolbar>
+<body>
+<header>
+  <img class="logo" src="assets/logoo.png">
+</header>
+<div class="ticketlist">
+  <table>
+    <thead>
+    <tr>
+      <th>Ticket ID</th>
+      <th>Email</th>
+      <th>Beschreibung</th>
+      <th>Status</th>
+      <th>Aktion</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let ticket of supportTickets" class="ticket">
+      <td>{{ ticket.id }}</td>
+      <td>{{ ticket.email }}</td>
+      <td>{{ ticket.description }}</td>
+      <td>{{ ticket.status }}</td>
+      <td>
+        <button class="action-button" (click)="resolveTicketStatus(ticket.id)">
+          <img src="assets/paperplane.png" alt="Papierflieger">
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>

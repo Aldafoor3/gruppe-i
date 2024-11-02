@@ -1,0 +1,59 @@
+.navbar-wrapper {
+  height: 7vh;
+  min-height: 70px;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  background: rgb(2,0,36);
+  background: linear-gradient(133deg, rgba(2,0,36,1) 0%,
+    rgba(3,65,89,1) 20%,
+    rgba(2,83,83,1) 31%,
+    rgba(35,136,127,1) 48%,
+    rgba(2,115,94,1) 69%);
+
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 0px;
+}
+
+.card {
+  font-weight: 500;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+  cursor: pointer;
+  color: white;
+  background-color: rgba(0,0,0,0);
+  transition: 0.4s all;
+
+  border-style: unset;
+  border-radius: 0;
+  margin: 0;
+
+  &-active {
+    background-color: rgba(3,65,89,1);
+  }
+
+  &:hover {
+    background-color: rgba(3,65,89,1);
+  }
+}
+
+
+
+.logo {
+  color: white;
+  font-size: x-large;
+  font-weight: bold;
+}

@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "name": "Vornamen von Neugeborenen in der stadt Aachen 2021",
+    "isFavorite": false,
+    "isCSV": true,
+    "isXML": true
+  },
+  {
+    "id": 20,
+    "name": "Anzahl der Arbeitssuchenden in der Städteregion Aachen",
+    "isFavorite": false,
+    "isCSV": false,
+    "isXML": true
+  },
+  {
+    "id": 35,
+    "name": "Mittlere Jahresvölkerung nach Geschlecht - KreisfreieStädte und Kreise (ab 1975)",
+    "isFavorite": true,
+    "isCSV": true,
+    "isXML": false
+  }
+]

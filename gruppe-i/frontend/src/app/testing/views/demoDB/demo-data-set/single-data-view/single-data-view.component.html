@@ -1,0 +1,173 @@
+<app-toolbar></app-toolbar>
+<body>
+<div class="topBox">
+  <button class="favorite-button" id="addDataToProfile">
+    Im Profil anzeigen
+  </button>
+  <button (click)="onFavoriteClick()" class="favorite-button">
+    Set as Favorite:
+    <div style="cursor: pointer; font-size: large" *ngIf="isFavoriteDataset">
+      &#9733;
+    </div>
+    <div style="cursor: pointer; font-size: large" *ngIf="!isFavoriteDataset">
+      &#9734;
+    </div>
+  </button>
+  <button
+    class="favorite-button"
+    (click)="generatePDF()"
+  >
+    Download PDF
+  </button>
+</div>
+
+<div #content>
+  <br />
+  <h2 style="text-align: center">Name: {{ fileName }}</h2>
+  <br />
+  <table class="tableGraphic">
+    <thead>
+    <tr>
+      <th *ngFor="let header of jsonItemKeys">
+        {{ header }}
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let row of jsonItemValues">
+      <td *ngFor="let value of row">{{ value }}</td>
+    </tr>
+    </tbody>
+  </table>
+  <div
+    style="
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5rem;
+      margin-top: 2rem;
+    "
+  >
+    <div>
+      <h3 style="margin-bottom: 0.5rem">
+        Key Option (Text : example vorname) :
+      </h3>
+      <select [(ngModel)]="selectedKey">
+        <option *ngFor="let key of itemKeys" [ngValue]="key">{{ key }}</option>
+      </select>
+    </div>
+
+    <div>
+      <h3 style="margin-bottom: 0.5rem">
+        Value Option ( Number : example anzahl) :
+      </h3>
+      <select [(ngModel)]="selectedValue">
+        <option *ngFor="let key of itemKeys" [ngValue]="key">{{ key }}</option>
+      </select>
+    </div>
+  </div>
+  <div
+    style="
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    "
+  >
+    <button (click)="onSubmit()">Submit</button>
+  </div>
+  <div
+    style="
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    "
+  >
+    <h3 style="margin-top: 50px">Diagram</h3>
+    <div id="barchart"></div>
+
+    <h3 style="margin-top: 50px">Tree Map</h3>
+
+    <div id="treemap"></div>
+  </div>
+</div>
+
+<!-- ----------------- CHANGE DATA DIALOG ----------------- -->
+<dialog id="changeDataWindow" class="changeDialog">
+  <form>
+    <json-editor [options]="editorOptions" [data]="jsonData"> </json-editor>
+  </form>
+  <div class="buttonBox">
+    <button id="sendChange" class="dialogButtons">Save Change</button>
+    <button id="closeChangeData" class="dialogButtons">Close</button>
+  </div>
+</dialog>
+
+
+<!-- ----------------- DATA TO PROFILE DIALOG ----------------- -->
+<dialog id="dataToProfileDialog" class="changeDialog">
+  <p>Datensatz im Profil anzeigen</p>
+  <div id="selectProfileDatasetID">
+    <button class="profileDatasetID" (click)="speichereWert(1)">1</button>
+    <button class="profileDatasetID" (click)="speichereWert(2)">2</button>
+    <button class="profileDatasetID" (click)="speichereWert(3)">3</button>
+    <button class="profileDatasetID" (click)="speichereWert(4)">4</button>
+  </div>
+
+  <div id="selectors">
+    <div id="rowAndColumnSelector">
+      <form id="rowAndColumnForm" ngNativeValidate>
+        <div class="keySelector">
+          <select [(ngModel)]="selectedKey" name="selectedKey">
+            <option *ngFor="let key of itemKeys" [ngValue]="key">{{ key }}</option>
+          </select>
+          <div class="scroller">
+            <input type="range" min="1" [max]="jsonItemValues.length" [value]="jsonItemValues.length" oninput="this.nextElementSibling.value = this.value" name="rangeInputKey" [(ngModel)]="rowLengt">
+            <output>{{ jsonItemValues.length }}</output>
+            <!-- ############################### DU BENUTZT DIESEN REGLER ############################### -->
+          </div>
+
+        </div>
+
+        <div class="keySelector">
+          <select [(ngModel)]="selectedValue" name="selectedValue">
+            <option *ngFor="let key of itemKeys" [ngValue]="key">{{ key }}</option>
+          </select>
+        </div>
+      </form>
+    </div>
+
+    <div class="graphTypeSelector">
+      <div class="typeSelector">
+        <input type="radio" id="säulendiagrammRadio" name="fav_language" value="bar" (click)="saveRadioValue('bar')">
+        <label for="säulendiagrammRadio">Säulendiagramm</label><br>
+      </div>
+      <div class="typeSelector">
+        <input type="radio" id="kuchendiagrammRadio" name="fav_language" value="tree" (click)="saveRadioValue('tree')">
+        <label for="kuchendiagrammRadio">pieChart</label><br>
+      </div>
+      <div class="typeSelector">
+        <input type="radio" id="kaRadio" name="fav_language" value="ka" (click)="saveRadioValue('ka')">
+        <label for="kaRadio">Ka</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="buttonBox">
+    <button id="saveAndCloseDTP" (click)="setRowAndColumn()" class="dialogButtons">Save Change</button>
+    <button id="closeWithoutSaveDTP" class="dialogButtons">Close</button>
+  </div>
+
+
+
+</dialog>
+
+
+
+<!-- ----------------- BOTTOM ROW ----------------- -->
+<div class="bottomRowDiv">
+  <button id="supportTicket" routerLink="/ticket">Support Ticket</button>
+  <button id="openChangeData">Change Data</button>
+</div>
+</body>

@@ -1,0 +1,83 @@
+
+<app-toolbar></app-toolbar>
+<div id="page">
+<div id="chatRoomsTable">
+  <h1>Your Chats</h1>
+  <table>
+    <thead>
+    <tr>
+      <th scope="col">ChatName</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let chat of chatList" (click)="openChatRoom(chat.chatRoomId)">
+      <button (click)="openChatRoom(chat.chatRoomId)"><td>{{ chat.chatName }}</td></button>
+    </tr>
+    </tbody>
+  </table>
+  <div id="createChatButtonBox">
+    <button id="newChat">Create New Chat</button>
+  </div>
+</div>
+
+  <div class="chat">
+    <div class="chatContainer">
+      <div class="chat-content">
+        <div class="card">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item" *ngFor="let chatMessage of chatMessages">
+              <strong>{{chatMessage.firstName}}: </strong>
+              <span *ngIf="!editMessageBoolean || messageIdToEdit != chatMessage.messageId">{{chatMessage.msg}}</span>
+              <span *ngIf="editMessageBoolean&&messageIdToEdit == chatMessage.messageId"> <input type="text" placeholder="{{chatMessage.msg}}" [(ngModel)]="this.editedMessage"> <button (click)="this.editMessage(chatMessage.messageId!)">send</button></span>
+              <button *ngIf="!chatMessage.read && !editMessageBoolean" (click)="setEditMessageBoolean(chatMessage.messageId!)">edit</button>
+              <button *ngIf="!chatMessage.read && editMessageBoolean &&messageIdToEdit == chatMessage.messageId" (click)="setEditMessageBoolean(-1)">cancel</button>
+              <button *ngIf="!chatMessage.read" (click)="deleteMessage(chatMessage.messageId!)">delete</button>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <form>
+        <div class="chat-send row">
+          <div class="col-8">
+            <input type="text" class="form-control" name="message" id="input-message" [(ngModel)]="message_to_send">
+          </div>
+          <div class="col-2">
+            <button type="submit" class="btn btn-primary" (click)="sendMsgToChatRoom()">Send</button>
+          </div>
+          <div class="col-2">
+            <button type="submit" class="btn btn-primary" (click)="fetchChat()">fetch Chat</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+  </div>
+
+</div>
+
+<dialog id="newChatroomDialog">
+  <p>Create New Chat</p>
+  <div class="selectParticipants" style="height: 300px; overflow-y: scroll;">
+    <div id="chatnameAndEmails">
+    <input type="text" placeholder="ChatName" [(ngModel)]="this.chatName" required>
+      <table>
+        <thead>
+         <tr>
+          <th scope="col">email</th>
+         </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of userList">
+           <button (click)="editChatRoomParticipants(user.id)"><td>{{ user.email }}</td></button>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div id="dialogBottomRow">
+    <button id="newChatroomDialogClose">Close</button>
+    <button id="newChatroomDialogCreate">Create Chat</button>
+  </div>
+</dialog>

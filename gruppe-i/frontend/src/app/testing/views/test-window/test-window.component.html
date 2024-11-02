@@ -1,0 +1,93 @@
+<p>test-window works!</p>
+
+
+<section>
+  <h1>ADMINS</h1>
+  <table>
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Vorname</th>
+      <th scope="col">Nachname</th>
+      <th scope="col">email</th>
+      <th scope="col">passwort</th>
+      <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let admin of adminList">
+      <td>{{ admin.id }}</td>
+      <td>{{ admin.lastname }}</td>
+      <td>{{ admin.firstname }}</td>
+      <td>{{ admin.email }}</td>
+      <td>{{ admin.password }}</td>
+    </tr>
+    </tbody>
+  </table>
+</section>
+
+
+<section>
+  <h1>USERS</h1>
+  <table>
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Vorname</th>
+      <th scope="col">Nachname</th>
+      <th scope="col">email</th>
+      <th scope="col">passwort</th>
+      <th scope="col">Profilbild</th>
+      <th scope="col">ProfilbildURL</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let user of userList">
+      <td>{{ user.id }}</td>
+      <td>{{ user.lastname }}</td>
+      <td>{{ user.firstname }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.password }}</td>
+      <td><img [src]="user.profilePicture" alt="Profilbild"></td>
+      <td>{{user.profilePicture}}</td>
+    </tr>
+    </tbody>
+  </table>
+</section>
+
+<button (click)="this.getProfilePics()">getProfilPics</button>
+
+<section>
+  <h1>CSV</h1>
+  <table>
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">column1</th>
+      <th scope="col">column2</th>
+      <th scope="col">column3</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let csvData of csvList">
+      <td>{{ csvData.id }}</td>
+      <td>{{ csvData.column1}}</td>
+      <td>{{ csvData.column2 }}</td>
+      <td>{{ csvData.column3 }}</td>
+    </tr>
+    </tbody>
+  </table>
+</section>
+<section>
+  <h1>nicht für die aufgabe relevantes zeugs</h1>
+  <form id="stripe-login" ngNativeValidate (ngSubmit)="formatByteCast()">
+  <input type="text" [(ngModel)]="f"
+         id="f"
+         name="f"
+         >
+    <div class="field padding-bottom--24">
+      <input style="background-color: blue" type="submit" name="submit" value="Continue">
+    </div>
+    </form>
+  <p>{{updatedString}}</p>
+</section>

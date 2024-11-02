@@ -1,0 +1,35 @@
+server:
+    error:
+        include-message: always
+        include-binding-errors: always
+spring:
+    datasource:
+        username: postgres
+        password: admin
+        url: jdbc:postgresql://localhost:5432/postgres?autocommit=false
+        driver-class-name: org.postgresql.Driver
+
+    jpa:
+        defer-datasource-initialization: false
+        hibernate:
+            ddl-auto: create-drop
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.PostgreSQLDialect
+                format_sql: true
+                connection:
+                    autocommit: false
+        show_sql: true
+
+    mail:
+        host: smtp.gmail.com
+        port: 587
+        username: gruppe.i1234@gmail.com
+        password: rnpihznbwuwougdg
+
+        properties:
+            mail:
+                smtp:
+                    auth: true
+                    starttls:
+                        enable: true

@@ -1,0 +1,134 @@
+
+<!--<app-toolbar></app-toolbar>-->
+
+<!--<body>-->
+<!--  <div class="container">-->
+<!--    <div class="row">-->
+<!--      &lt;!&ndash; Main content &ndash;&gt;-->
+<!--      <h1 style="color: whitesmoke">Discussion</h1>-->
+<!--      <div class="col-lg-9 mb-3"  >-->
+<!--        &lt;!&ndash; End of post 1 &ndash;&gt;-->
+<!--        <div style="background-color: floralwhite " class="card row-hover pos-relative py-3 px-3 mb-3 border-warning border-top-0 border-right-0 border-bottom-0 rounded-0" >-->
+<!--          <div class="row align-items-center">-->
+<!--            <div class="col-md-8 mb-3 mb-sm-0">-->
+<!--              <p class="text-sm"><span class="op-6"><span class="op-6" >{{this.text}}</span></span></p>-->
+<!--              <p class="text-sm"><span class="op-6"><span class="op-6" style="color: dimgray">by {{this.creator?.email}}</span></span></p>-->
+<!--              <p class="text-sm" *ngIf="datum!=undefined"><span class="op-6"><span class="op-6" style="color: dimgray">at {{this.datum}}</span></span></p>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+
+
+
+
+<!--      <div class="col-lg-9 mb-3"  >-->
+<!--        &lt;!&ndash; End of post 1 &ndash;&gt;-->
+<!--        <div style="background-color: floralwhite "  class="card row-hover pos-relative py-3 px-3 mb-3 border-warning border-top-0 border-right-0 border-bottom-0 rounded-0" >-->
+<!--          <div class="row align-items-center">-->
+<!--            <div class="col-md-8 mb-3 mb-sm-0">-->
+<!--              <p class="text-sm"><span class="op-6"><span class="op-6" >-->
+<!--              <input type="text" [(ngModel)]="commentContent">-->
+<!--              <button (click)="createNewComment()">POST</button>-->
+<!--              </span></span></p>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <div class="col-lg-9 mb-3"  >-->
+<!--        &lt;!&ndash; End of post 1 &ndash;&gt;-->
+<!--        <div style="background-color: floralwhite " *ngFor="let comment of this.commentList" class="card row-hover pos-relative py-3 px-3 mb-3 border-warning border-top-0 border-right-0 border-bottom-0 rounded-0" >-->
+<!--          <div class="row align-items-center">-->
+<!--            <div class="col-md-8 mb-3 mb-sm-0">-->
+<!--              <p class="text-sm"><span class="op-6"><span class="op-6" >{{comment.content}}</span></span></p>-->
+<!--              <p class="text-sm"><span class="op-6"><span class="op-6" style="color: dimgray">by {{comment.commenter.email}}</span></span></p>-->
+<!--              <p class="text-sm"><span class="op-6"><span class="op-6" style="color: dimgray">at {{comment.datum}}</span></span></p>-->
+<!--              <div *ngIf="!isUser" class="btn-grad" (click)="deleteDiscussion(comment.id)">delete</div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    </div>-->
+<!--</body>-->
+
+
+<app-toolbar></app-toolbar>
+
+<body>
+<div class="container">
+  <div class="row">
+    <!-- Main content -->
+    <h1 style="color: whitesmoke">Discussion</h1>
+
+    <div class="col-lg-9 mb-3">
+      <!-- Topic details -->
+      <div style="background-color: floralwhite" class="card row-hover pos-relative py-3 px-3 mb-3 border-warning border-top-0 border-right-0 border-bottom-0 rounded-0">
+        <div class="row align-items-center">
+          <div class="col-md-8 mb-3 mb-sm-0">
+            <p class="text-sm">
+                <span class="op-6">
+                  <span class="op-6">{{ text }}</span>
+                </span>
+            </p>
+            <p class="text-sm">
+                <span class="op-6">
+                  <span class="op-6" style="color: dimgray">by {{ creator?.email }}</span>
+                </span>
+            </p>
+            <p class="text-sm" *ngIf="datum !== undefined">
+                <span class="op-6">
+                  <span class="op-6" style="color: dimgray">at {{ datum }}</span>
+                </span>
+            </p>
+            <button *ngIf="isUser" (click)="likeDiscussion()" class="btn btn-primary">
+              Like
+            </button>
+            <span class="badge badge-light" style="color: black">likes: {{ likes }}</span>
+            <button *ngIf="isUser" (click)="favoriteDiscussion()" class="btn btn-primary">Favorite</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-9 mb-3">
+      <!-- Add comment section -->
+      <div style="background-color: floralwhite" class="card row-hover pos-relative py-3 px-3 mb-3 border-warning border-top-0 border-right-0 border-bottom-0 rounded-0">
+        <div class="row align-items-center">
+          <div class="col-md-8 mb-3 mb-sm-0">
+            <textarea [(ngModel)]="commentContent" placeholder="Add a comment"></textarea>
+            <button (click)="createNewComment()" class="btn btn-primary">Post Comment</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-9 mb-3">
+      <!-- Comment list -->
+      <div style="background-color: floralwhite" *ngFor="let comment of commentList" class="card row-hover pos-relative py-3 px-3 mb-3 border-warning border-top-0 border-right-0 border-bottom-0 rounded-0">
+        <div class="row align-items-center">
+          <div class="col-md-8 mb-3 mb-sm-0">
+            <p class="text-sm">
+                <span class="op-6">
+                  <span class="op-6">{{ comment.content }}</span>
+                </span>
+            </p>
+            <p class="text-sm">
+                <span class="op-6">
+                  <span class="op-6" style="color: dimgray">by {{ comment.commenter.email }}</span>
+                </span>
+            </p>
+            <p class="text-sm">
+                <span class="op-6">
+                  <span class="op-6" style="color: dimgray">at {{ comment.datum }}</span>
+                </span>
+            </p>
+            <div *ngIf="!isUser" class="btn btn-primary" (click)="deleteDiscussion(comment.id)">Delete</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>

@@ -1,0 +1,41 @@
+<div class="navbar-wrapper">
+  <div class="logo">SEP - Group I</div>
+    <div class="navbar">
+
+      <div class="card" routerLink="/chatbot" routerLinkActive="card-active" *ngIf="loggedIn && isUser">
+        <img src="assets/cuteLittleRobot.png"style="width: 50px; height: auto;">
+        <span>ChatBot</span>
+      </div>
+
+      <div class="card" routerLink="/forum" routerLinkActive="card-active" *ngIf="loggedIn">
+        <span>Forum</span>
+      </div>
+
+      <div class="card" routerLink="/chatDemo" routerLinkActive="card-active" *ngIf="loggedIn&& isUser">
+        <span>Chat</span>
+      </div>
+
+      <div class="card" routerLink="/geoData" routerLinkActive="card-active">
+        <span>Geo Daten</span>
+      </div>
+
+      <div class="card" routerLink="/ticketlist" routerLinkActive="card-active" *ngIf="loggedIn&& !isUser">
+        <span>Ticketübersicht</span>
+      </div>
+
+      <div class="card" routerLink="/testData" routerLinkActive="card-active">
+        <span>Datensätze</span>
+      </div>
+
+
+
+      <div class="card" (click)="getProfileBySessionId()" routerLinkActive="card-active" *ngIf="loggedIn&& isUser">
+        <span>Profil</span>
+      </div>
+
+      <div class="card">
+        <button (click)="login()" *ngIf="!loggedIn">login </button>
+        <button (click)="logout()" style="background-color:red" *ngIf="loggedIn">logout </button>
+      </div>
+  </div>
+</div>

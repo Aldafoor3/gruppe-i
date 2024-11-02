@@ -1,0 +1,11 @@
+<app-toolbar></app-toolbar>
+<body>
+<header>
+  <img class="logo" src="assets/logo.png">
+</header>
+
+<div class="text-container">
+  <textarea class="text-field" placeholder="Schreibe dein Supportticket" [(ngModel)]="description"></textarea>
+  <button class="send-button" (click)="createTicket()">Senden</button>
+</div>
+</body>

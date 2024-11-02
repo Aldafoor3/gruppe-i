@@ -1,0 +1,76 @@
+<head>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+          crossorigin=""></script>
+  <script src="https://cdn.jsdelivr.net/npm/leaflet-proj/src/proj.js"></script>
+</head>
+
+
+<body>
+
+<!-- UPLOAD DIALOG -->
+<dialog id="uploadDialog">
+  <p>Upload</p>
+  <form (ngSubmit)="onSubmit()">
+    <!--<input type="text" name="fileName" maxlength="128" placeholder="Name"> -->
+    <input #fileInput type="file" name="file" accept=".geojson">
+  </form>
+
+  <div class="dialogBottomDiv">
+    <button id="uploadDatasetButton" type="submit" (click)="onSubmit()">Upload</button>
+    <button id="closeUploadDialog">Close</button>
+  </div>
+</dialog>
+
+
+<!-- DEFINE DATASETS DIALOG -->
+<dialog id="defineDatasets">
+    <p>Define Datasets</p>
+
+    <div id="geoDataTableContainer">
+      <table>
+        <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Name</th>
+          <th scope="col">Color</th>
+          <th scope="col">Visible</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let geoData of geoDataSetList">
+          <td>{{ geoData.id }}</td>
+          <td>{{ geoData.name }}</td>
+          <td> <input type="color" [(ngModel)]="geoData.color" id="markerColorChanger"> </td>
+          <td> <input type="checkbox" [(ngModel)]="geoData.isShown" id="isVisibleCheckbox"> </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+  <div class="dialogBottomDiv">
+    <button id="closeDatasetDialog">Close</button>
+  </div>
+</dialog>
+
+<!-- TOOLBAR -->
+<div id="toolbar">
+  <app-toolbar></app-toolbar>
+</div>
+
+<!-- MAP -->
+  <div id="map"></div>
+
+
+<!-- BOTTOM ROW -->
+  <div class="bottomRowDiv">
+    <button id="supportTicket" routerLink="/ticket">Support Ticket</button>
+    <button id="defineDatasetsButton">Define Datasets</button>
+    <button id="openUploadDialog">Upload Data</button>
+  </div>
+</body>
+
+

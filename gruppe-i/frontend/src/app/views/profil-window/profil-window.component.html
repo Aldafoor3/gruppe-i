@@ -1,0 +1,189 @@
+<app-toolbar></app-toolbar>
+
+
+
+<body style="background-color: {{this.color1}}">
+
+  <app-friend-list></app-friend-list>
+  <div class="profilWrapper">
+    <div class="profil">
+
+
+
+      <div class="profilDetailsWrapper profilBox">
+        <div class="profilDetails">
+          <p class="Textlabel">Vorname:</p>
+          <p class="Valuelabel">{{ firstname }}</p>
+        </div>
+
+        <div class="profilDetails">
+          <p class="Textlabel">Nachname:</p>
+          <p class="Valuelabel">{{ lastname }}</p>
+        </div>
+
+        <div class="profilDetails">
+          <p class="Textlabel">Geburtsdatum:</p>
+          <p class="Valuelabel">{{ birthdate }}</p>
+        </div>
+
+        <div class="profilDetails">
+          <p class="Textlabel">Email:</p>
+          <p class="Valuelabel">{{ email }}</p>
+        </div>
+      </div>
+
+      <div class="profilPictureWrapper profilBox">
+        <img [src]="this.picture" class="profilPicture" />
+      </div>
+
+      <div class="favoriteBox profilBox">
+
+        <div id="nyanCounter">
+          <button id="nyanButton" (click)="doNyan()"><svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="M169.859-485Q132-485 106-511.141t-26-64Q80-613 106.141-639t64-26Q208-665 234-638.859t26 64Q260-537 233.859-511t-64 26Zm185-170Q317-655 291-681.141t-26-64Q265-783 291.141-809t64-26Q393-835 419-808.859t26 64Q445-707 418.859-681t-64 26Zm250 0Q567-655 541-681.141t-26-64Q515-783 541.141-809t64-26Q643-835 669-808.859t26 64Q695-707 668.859-681t-64 26Zm185 170Q752-485 726-511.141t-26-64Q700-613 726.141-639t64-26Q828-665 854-638.859t26 64Q880-537 853.859-511t-64 26ZM266-75q-42 0-69-31.526T170-181q0-42 25.5-74.5T250-318q22-22 41-46.5t36-50.5q29-44 65-82t88-38q52 0 88.5 38t65.5 83q17 26 35.5 50t40.5 46q29 30 54.5 62.5T790-181q0 42.948-27 74.474Q736-75 694-75q-54 0-107-9t-107-9q-54 0-107 9t-107 9Z"/></svg></button>
+          <p id="nyanTitle">Nyans: </p>
+          <p id="nyanText"> {{nyanCounter}}</p>
+        </div>
+
+        <div id="profileFriendList">
+            <div style="width: 100%">
+              <h3 *ngIf="friendList.length > 0">Freundesliste:</h3>
+              <table>
+                <tr>
+                  <td *ngFor="let friend of friendList" (click)="routeToProfile(friend.id)" >
+                    {{ friend.firstname + ' ' + friend.lastname }}
+                  </td>
+                </tr>
+              </table>
+            </div>
+        </div>
+
+        <div id="privacySwitch" *ngIf="this.isMyProfile">
+          <div id="gearSVGDiv">
+            <svg id="gearSVG" xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="m388-80-20-126q-19-7-40-19t-37-25l-118 54-93-164 108-79q-2-9-2.5-20.5T185-480q0-9 .5-20.5T188-521L80-600l93-164 118 54q16-13 37-25t40-18l20-127h184l20 126q19 7 40.5 18.5T669-710l118-54 93 164-108 77q2 10 2.5 21.5t.5 21.5q0 10-.5 21t-2.5 21l108 78-93 164-118-54q-16 13-36.5 25.5T592-206L572-80H388Zm92-270q54 0 92-38t38-92q0-54-38-92t-92-38q-54 0-92 38t-38 92q0 54 38 92t92 38Zm0-60q-29 0-49.5-20.5T410-480q0-29 20.5-49.5T480-550q29 0 49.5 20.5T550-480q0 29-20.5 49.5T480-410Zm0-70Zm-44 340h88l14-112q33-8 62.5-25t53.5-41l106 46 40-72-94-69q4-17 6.5-33.5T715-480q0-17-2-33.5t-7-33.5l94-69-40-72-106 46q-23-26-52-43.5T538-708l-14-112h-88l-14 112q-34 7-63.5 24T306-642l-106-46-40 72 94 69q-4 17-6.5 33.5T245-480q0 17 2.5 33.5T254-413l-94 69 40 72 106-46q24 24 53.5 41t62.5 25l14 112Z"/></svg>
+          </div>
+        </div>
+
+        <div id="colorpicker" *ngIf="this.isMyProfile">
+          <svg (click)="setColorPickerVisible()" xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48"><path d="m255-917 43-43 347.686 347.686Q669-589 669-555.374q0 33.627-23 56.374L468-321q-23 23-54 23t-54-23L182-499q-23-22.774-23-56.439 0-33.666 23-56.44L371-801 255-917Zm159 159L215-559h398L414-758Zm337.788 477Q722-281 701-302.15 680-323.3 680-353q0-17.348 8-37.174T710-431q8-13 19.5-28t22.5-28q11 13 22.5 28t19.5 28q14 21 22 40.826T824-353q0 29.7-21.212 50.85-21.213 21.15-51 21.15ZM80 1v-121h800V1H80Z"/>
+          </svg>
+          <input *ngIf="colorpickervisible" class="form-control ml-2 mr-2"
+                 [value]="color1"
+                 [(colorPicker)]="color1"
+                 (colorPickerClose)="updateColor($event)" />
+
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div id="favorites">
+    <p id="title">Favoriten</p>
+    <div id="favoritenContainer">
+      <div class="favoriteBox">
+        <p>Datensatz</p>
+        <button *ngIf="favoriteData != null " (click)="toDataset(favoriteData[0])">{{favoriteData[1]}}</button>
+      </div>
+
+      <div class="favoriteBox">
+        <p>Forum</p>
+        <button></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-container">
+    <div class="grid-item" id="grid-item-1">{{dataSets[0][6]}} (Key: {{dataSets[0][2]}} - Value: {{dataSets[0][1]}})</div>
+    <div class="grid-item" id="grid-item-2">{{dataSets[1][6]}} (Key: {{dataSets[1][2]}} - Value: {{dataSets[1][1]}})</div>
+    <div class="grid-item" id="grid-item-3">{{dataSets[2][6]}} (Key: {{dataSets[2][2]}} - Value: {{dataSets[2][1]}})</div>
+    <div class="grid-item" id="grid-item-4">{{dataSets[3][6]}} (Key: {{dataSets[3][2]}} - Value: {{dataSets[3][1]}})</div>
+  </div>
+
+  <div id="nyanCatContainer" *ngIf="nyanCatVisible">
+    <div id="nyanCat" [ngClass]="{'fly-in': nyanCatVisible}">
+      <img src="assets/nyancat.gif" height="200" width="350">
+    </div>
+  </div>
+
+</body>
+
+
+<dialog id="changeSettingsDialog">
+  <div id="changeOptions">
+    <button class="changeOptionButton" (click)="switchDiv('div1')" [ngClass]="{'active': settingWindowDivs === 'div1'}">Profil Einstellungen</button>
+    <button class="changeOptionButton" (click)="switchDiv('div2')" [ngClass]="{'active': settingWindowDivs === 'div2'}">Nutzerdaten ändern</button>
+  </div>
+
+
+  <div id="profileSettingsTab" *ngIf="settingWindowDivs === 'div1'">
+    <form #settingsForm="ngForm" (ngSubmit)="submitForm()">
+      <div class="inputLabel">
+        <label class="input_label">Vorname</label>
+        <input type="text" [(ngModel)]="firstname"
+                id="firstname"
+                name="firstname">
+      </div>
+
+      <div class="inputLabel">
+        <label class="input_label">Nachname</label>
+        <input type="text" [(ngModel)]="lastname"
+               id="lastname"
+               name="lastname">
+      </div>
+
+      <div class="inputLabel">
+        <label class="input_label">Email</label>
+        <input type="text" [(ngModel)]="email"
+               id="email"
+               name="email">
+      </div>
+
+      <div class="inputLabel">
+        <label class="input_label">Geburtstag</label>
+        <input type="text" [(ngModel)]="birthdate"
+               id="birthdate"
+               name="birthdate">
+      </div>
+
+      <div class="inputLabel">
+        <label class="input_label">Neues Passwort</label>
+        <input type="password" [(ngModel)]="newPassword"
+               id="newPassword"
+               name="newPassword">
+      </div>
+
+      <div class="inputLabel">
+        <label class="input_label">Passwort wiederholen</label>
+        <input type="password" [(ngModel)]="newPasswordRepeat"
+               id="newPasswordRepeat"
+               name="newPasswordRepeat">
+      </div>
+
+    </form>
+  </div >
+
+  <div id="userDataTab" *ngIf="settingWindowDivs === 'div2'">
+    <div class="switchContainer">
+      <p>Profil</p>
+      <label class="switch" >
+        <input id="privacySettingCheckbox" type="checkbox" [checked]="isPrivate" (click)="changePrivacy()"  >
+        <span class="slider round" [ngClass]="{'active': isPrivate}"></span>
+      </label>
+    </div>
+    <div class="switchContainer">
+      <p>Freundesliste</p>
+      <label class="switch" >
+        <input id="privacyFriendlistSettingCheckbox" type="checkbox" [checked]="privacySettingFriendList" (click)="changeFriendlistPrivacy()"  >
+        <span class="slider round" [ngClass]="{'active': privacySettingFriendList}"></span>
+      </label>
+    </div>
+  </div>
+
+  <div class="buttonBox">
+    <button id="saveUserSettings" class="dialogButtons" (click)="submitForm()">Save Change</button>
+    <button id="closeWithoutSave" class="dialogButtons">Close</button>
+  </div>
+
+
+</dialog>

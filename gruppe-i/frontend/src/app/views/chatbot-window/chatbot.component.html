@@ -1,0 +1,27 @@
+<app-toolbar></app-toolbar>
+
+<body>
+<div class="container">
+  <div class="chatbot">
+    <ng-container *ngFor="let message of messages">
+      <ng-container *ngIf="message.from === 'bot'">
+        <div class="chatbot-message">
+          <div class="bubble">
+            <img src="assets/cuteLittleRobot.png" alt="Chatbot Icon" class="chatbot-icon" />
+            <ng-container *ngIf="message.isGif">
+              <img [src]="message.content" alt="GIF" [style.max-width.px]="300" [style.height.auto]="true">
+            </ng-container>
+            <ng-container *ngIf="!message.isGif">
+              <p [innerHTML]="message.content"></p>
+            </ng-container>
+          </div>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="message.from === 'user'">
+        <div class="user-message user-bubble">{{ message.content }}</div>
+      </ng-container>
+    </ng-container>
+    <input type="text" [(ngModel)]="userInput" (keyup.enter)="sendMessage()" placeholder="Deine Nachricht eingeben" />
+  </div>
+</div>
+</body>

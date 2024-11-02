@@ -1,0 +1,102 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: linear-gradient(133deg, rgba(2,0,36,1) 0%,
+  rgba(3,65,89,1) 20%, rgba(2,83,83,1) 31%,
+  rgba(35,136,127,1) 48%, rgba(2,115,94,1) 69%,
+  rgba(3,140,62,1) 86%, rgba(12,242,93,1) 95%);
+  color: floralwhite;
+  padding: 10px;
+}
+
+.container {  /* kompletter Hintergrund*/
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+}
+
+.chatbot {  /* Chatbotkomponente */
+  border: 1px solid #ccc;
+  padding: 10px;
+  width: 700px;
+  margin-top: 70px;
+  background-color: rgba(255, 255, 255, 0.7);
+  overflow-y: auto; /* Hinzufügen der vertikalen Scrollbar */
+  max-height: 700px; /* Maximalhöhe des Chatbereichs */
+}
+/*https://www.html-code-generator.com/css/speech-bubble-generator*/
+/* User Nachricht nach rechts gerückt*/
+.user-message {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+/* Nachrichttext*/
+input[type="text"] {
+  width: 100%;
+  padding: 5px;
+}
+
+/*https://stock.adobe.com/at/images/cute-kawaii-slime-robot-character-created-with-generative-ai/561383259*/
+/*ChatbotIcon*/
+.chatbot-icon {
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: auto;
+  margin-bottom: 10px;
+  animation: floatIcon 3s ease-in-out infinite;
+}
+@keyframes floatIcon {
+  0% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(-10px);
+  }
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+}
+/*Nachrichtenblase Bot*/
+.bubble {
+  position: relative;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background: linear-gradient(0deg, #a3ccf0 5%, #e0e0e0 100%);
+  color: #FFFFFF;
+  font-family: Arial;
+  font-size: 15px;
+  text-align: center;
+  min-width: 250px;
+  max-width: 400px;
+  width: auto;
+  border-radius: 10px;
+  padding: 10px;
+  color: #000000;
+}
+
+/* Nachrichtenblase User */
+.user-bubble {
+  position: relative;
+  margin-bottom: 20px;
+  margin-right: 0;
+  background: linear-gradient(0deg, #a3ccf0 5%, #e0e0e0 100%);
+  color: #FFFFFF;
+  font-family: Arial;
+  font-size: 15px;
+  text-align: right;
+  width: 250px;
+  border-radius: 10px;
+  padding: 10px;
+  color: #000000;
+  margin-left: auto;
+  margin-right: 0;
+}
+
+
+
